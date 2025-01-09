@@ -42,7 +42,7 @@ public class Picture extends Canvas
 
   public void paint( Graphics g )       // When 'Window' is first
   {                                     //  shown or damaged
-    drawImage( (Graphics2D) g );
+	  drawImage( (Graphics2D) g );
   }
   
   public void update( Graphics g )      // Called by repaint
@@ -60,7 +60,7 @@ public class Picture extends Canvas
   public void drawImage( Graphics2D g )
   {
     setSize( width, height );
-    g.setPaint( Color.white );
+    g.setPaint( Color.decode("#495057"));
     g.fill( new Rectangle2D.Double( 0, 0, width, height ) );
     if ( thePicture != null )
     {

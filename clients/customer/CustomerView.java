@@ -95,11 +95,20 @@ public class CustomerView implements Observer
     cp.add( thePicture );                           //  Add to canvas
     thePicture.clear();
     
+    
+    cp.setBackground(Color.decode("#495057"));			//New UI design
+    theBtCheck.setBackground(Color.decode("#6c757d"));
+    theBtClear.setBackground(Color.decode("#6c757d"));
+    theInput.setBackground(Color.decode("#6c757d"));
+    theOutput.setBackground(Color.decode("#6c757d"));
+    theSP.setBackground(Color.decode("#6c757d"));
+    thePicture.setBackground(Color.decode("#495057"));
+    
     rootWindow.setVisible( true );                  // Make visible);
     theInput.requestFocus();                        // Focus is here
   }
 
-   /**
+   /**S
    * The controller object, used so that an interaction can be passed to the controller
    * @param c   The controller
    */

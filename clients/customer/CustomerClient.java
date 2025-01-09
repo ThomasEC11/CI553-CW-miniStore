@@ -7,6 +7,8 @@ import middle.MiddleFactory;
 import middle.Names;
 import middle.RemoteMiddleFactory;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 /**
@@ -30,6 +32,7 @@ public class CustomerClient
     JFrame  window = new JFrame();     
     window.setTitle( "Customer Client (MVC RMI)" );
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+    //window.getContentPane().setBackground(Color.BLUE);
     
     CustomerModel model = new CustomerModel(mf);
     CustomerView  view  = new CustomerView( window, mf, 0, 0 );
@@ -37,6 +40,6 @@ public class CustomerClient
     view.setController( cont );
 
     model.addObserver( view );       // Add observer to the model
-    window.setVisible(true);         // Display Scree
+    window.setVisible(true);         // Display Screen
   }
 }

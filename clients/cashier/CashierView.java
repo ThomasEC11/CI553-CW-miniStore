@@ -22,6 +22,7 @@ public class CashierView implements Observer
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
   private static final String BOUGHT = "Bought/Pay";
+  private static final String DISCOUNT = "Discount";
 
   private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
@@ -31,6 +32,7 @@ public class CashierView implements Observer
   private final JButton     theBtCheck = new JButton( CHECK );
   private final JButton     theBtBuy   = new JButton( BUY );
   private final JButton     theBtBought= new JButton( BOUGHT );
+  private final JButton     theBtDiscount   = new JButton( DISCOUNT );
 
   private StockReadWriter theStock     = null;
   private OrderProcessing theOrder     = null;
@@ -96,6 +98,27 @@ public class CashierView implements Observer
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
     theInput.requestFocus();                        // Focus is here
+    
+    // Discount
+    
+    theBtDiscount.setBounds( 16, 25+60*2, 80, 40 );      // Buy button 
+    theBtDiscount.addActionListener(                     // Call back code
+      e -> cont.doBuy() );
+    cp.add( theBtDiscount );
+    
+    
+    
+    
+    
+    
+    cp.setBackground(Color.decode("#495057"));
+    theBtCheck.setBackground(Color.decode("#6c757d"));
+    theBtBuy.setBackground(Color.decode("#6c757d"));
+    theBtBought.setBackground(Color.decode("#6c757d"));
+    theInput.setBackground(Color.decode("#6c757d"));
+    theOutput.setBackground(Color.decode("#6c757d"));
+    theSP.setBackground(Color.decode("#6c757d"));
+      
   }
 
   /**

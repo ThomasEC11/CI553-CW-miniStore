@@ -74,6 +74,14 @@ public class PackingView implements Observer
     cp.add( theSP );                                //  Add to canvas
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
+    
+    
+    cp.setBackground(Color.decode("#495057"));
+    theBtPack.setBackground(Color.decode("#6c757d"));
+    theOutput.setBackground(Color.decode("#6c757d"));
+    theSP.setBackground(Color.decode("#6c757d"));
+    
+    
   }
   
   public void setController( PackingController c )
