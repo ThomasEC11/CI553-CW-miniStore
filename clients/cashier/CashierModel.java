@@ -6,7 +6,14 @@ import catalogue.Product;
 import debug.DEBUG;
 import middle.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Implements the Model of the cashier client
@@ -23,6 +30,8 @@ public class CashierModel extends Observable
 
   private StockReadWriter theStock     = null;
   private OrderProcessing theOrder     = null;
+private Object audioInputStream;
+private Clip clip;
 
   /**
    * Construct the model of the Cashier
@@ -116,6 +125,10 @@ public class CashierModel extends Observable
           theBasket.add( theProduct );          //  Add to bought
           theAction = "Purchased " +            //    details
                   theProduct.getDescription();  //
+          
+       // Play sound when an item is successfully bought
+          playSound("audio/gold_sack.wav");
+          
         } else {                                // F
           theAction = "!!! Not in stock";       //  Now no stock
         }
@@ -156,7 +169,25 @@ public class CashierModel extends Observable
     }
     theBasket = null;
     setChanged(); notifyObservers(theAction); // Notify
+  	}
+       
+    // Playing audio
+
+  private void playSound(String soundFilePath) {
+      try {
+          File soundFile = new File(soundFilePath);
+          if (soundFile.exists()) {
+              Clip clip = AudioSystem.getClip();
+              clip.open(AudioSystem.getAudioInputStream(soundFile));
+              clip.start();
+          } else {
+              DEBUG.error("Sound file not found: %s", soundFilePath);
+          }
+      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+          DEBUG.error("Error playing sound: %s", e.getMessage());
+      }
   }
+
 
   /**
    * ask for update of view called at start of day
