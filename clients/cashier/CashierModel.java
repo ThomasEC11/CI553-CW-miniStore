@@ -159,13 +159,41 @@ public class CashierModel extends Observable
   }
 
   /**
-   * ask for update of view callled at start of day
+   * ask for update of view called at start of day
    * or after system reset
    */
   public void askForUpdate()
   {
     setChanged(); notifyObservers("Welcome");
   }
+  
+  
+  // Discount
+  
+  public void doDiscount(double discountPercentage) 
+  {
+	   	String theAction = "";
+	   	try 
+	   	{
+	   		if (theBasket != null && theBasket.size() > 0) 
+	   		{
+	   			for (Product product : theBasket) {
+	   				double originalPrice = product.getPrice();
+	   				double discountedPrice = originalPrice - (originalPrice * discountPercentage / 100);
+	   				product.setPrice(discountedPrice);
+	   			}
+	   			theAction = String.format("Applied %.2f%% discount to all items in the basket", discountPercentage);
+	   		} else {
+	   			theAction = "Basket is empty. Cannot apply discount";
+	   		}
+	   	} catch (Exception e) {
+	   		DEBUG.error("%s\n%s", "CashierModel.applyDiscount", e.getMessage());
+	   		theAction = "Error applying discount: " + e.getMessage();
+	   	}
+	   	setChanged(); 
+	   	notifyObservers(theAction);
+  }
+
   
   /**
    * make a Basket when required

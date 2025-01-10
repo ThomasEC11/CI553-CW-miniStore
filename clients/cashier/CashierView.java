@@ -103,7 +103,7 @@ public class CashierView implements Observer
     
     theBtDiscount.setBounds( 16, 25+60*2, 80, 40 );      // Buy button 
     theBtDiscount.addActionListener(                     // Call back code
-      e -> cont.doBuy() );
+      e -> cont.doDiscount() );
     cp.add( theBtDiscount );
     
     
@@ -118,6 +118,7 @@ public class CashierView implements Observer
     theInput.setBackground(Color.decode("#6c757d"));
     theOutput.setBackground(Color.decode("#6c757d"));
     theSP.setBackground(Color.decode("#6c757d"));
+    theBtDiscount.setBackground(Color.decode("#6c757d"));
       
   }
 
